@@ -1,0 +1,17 @@
+{
+  "name": "test_as",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "asc --noRuntime -o docs/app.wasm src/app.ts",
+    "debug": "asc --noRuntime -o docs/app.wast src/app.ts",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hiroki",
+  "license": "MIT",
+  "devDependencies": {
+    "assemblyscript": "0.3.0"
+  }
+}

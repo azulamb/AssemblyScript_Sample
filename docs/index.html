@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<script type="text/javascript">
+function loadWasm( wasm ) {
+	return fetch( wasm )
+		.then( response => response.arrayBuffer() )
+		.then( bytes => new WebAssembly.Instance( new WebAssembly.Module( bytes ) ) );
+}
+function loadWasm_( wasm ) {
+	return fetch( wasm )
+		.then( response => response.arrayBuffer() )
+		.then( bytes => WebAssembly.instantiate( bytes, {} ) );
+}
+document.addEventListener( 'DOMContentLoaded', () => {
+	loadWasm( 'app.wasm' ).then( wasm => {
+		console.log( wasm );
+		document.getElementById( 'result' ).textContent = wasm.exports.add( 1.5, 2.5 );
+	} );
+	/*loadWasm_( 'app.wasm' ).then( wasm => {
+		console.log( wasm );
+		document.getElementById( 'result' ).textContent = wasm.instance.exports.add( 1.5, 2.5 );
+	} );*/
+} );
+</script>
+</head>
+<body>
+	<div id="result"></div>
+</body>
+</html>
